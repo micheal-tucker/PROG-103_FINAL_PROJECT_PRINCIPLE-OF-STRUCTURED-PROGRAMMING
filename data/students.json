@@ -169,24 +169,5 @@
         "present_days": 5.0,
         "absent_days": 3.0,
         "attendance": 62.5
-    },
-    {
-        "id": "905001507",
-        "name": "john",
-        "gender": "Male",
-        "phone": "03456766",
-        "email": "xcvbhgf@gmail.com",
-        "department": "FCMB",
-        "semester": "Semester 6",
-        "course_code": "PROG102",
-        "course_name": "Principle of Software Engineering",
-        "ca": 12.0,
-        "exam": 65.0,
-        "total": 77.0,
-        "grade": "B",
-        "status": "PASS",
-        "present_days": 11.0,
-        "absent_days": 2.0,
-        "attendance": 84.6
     }
 ]
