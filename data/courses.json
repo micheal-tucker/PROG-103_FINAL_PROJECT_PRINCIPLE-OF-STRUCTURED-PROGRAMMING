@@ -1,0 +1,26 @@
+[
+    {
+        "code": "PROG103",
+        "name": "Structured Programming"
+    },
+    {
+        "code": "COMP 102",
+        "name": "Introduction to Database"
+    },
+    {
+        "code": "COMP105",
+        "name": "Introduction to Data Communication"
+    },
+    {
+        "code": "MATH108",
+        "name": "Computerized Mathematices"
+    },
+    {
+        "code": "PROG102",
+        "name": "Principle of Software Engineering"
+    },
+    {
+        "code": "MULTI",
+        "name": "Introduction to Multimedia"
+    }
+]
