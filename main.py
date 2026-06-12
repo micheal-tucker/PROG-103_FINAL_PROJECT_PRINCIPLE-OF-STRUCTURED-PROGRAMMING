@@ -6,6 +6,8 @@ import tkinter as tk
 from datetime import datetime
 from tkinter import messagebox, ttk
 
+from matplotlib import container
+
 from database import COURSE_FILE, DATA_FILE, load_json, save_json
 from student_manager import calculate_grade
 
@@ -68,36 +70,46 @@ class LoginApp(tk.Tk):
         self.front_job = self.after(100, self.bring_to_front)
 
     def build_login(self):
-        container = tk.Frame(self, bg="#ffffff", padx=26, pady=24, highlightthickness=1)
-        container.configure(highlightbackground="#d5dde5")
-        container.pack(fill="both", expand=True, padx=18, pady=18)
+        container = tk.Frame(self, bg="white")
+        container.pack(fill="both", expand=True, padx=20, pady=20)
 
         tk.Label(
             container,
-            text="Login Authentication",
-            bg="#ffffff",
-            fg="#202833",
-            font=("Segoe UI", 17, "bold"),
-        ).pack(anchor="w")
-        tk.Label(
+            text="EDUTRACK SIERRA LEONE",
+            font=("Segoe UI", 18, "bold"),
+            bg="white"
+        ).pack(pady=(0, 20))
+
+        tk.Label(container, text="Username", bg="white").pack(anchor="w")
+
+        username_entry = tk.Entry(
             container,
-            text="Use admin credentials to access EduTrack.",
-            bg="#ffffff",
-            fg="#607080",
-            font=("Segoe UI", 10),
-        ).pack(anchor="w", pady=(4, 16))
+            textvariable=self.username_var,
+            font=("Segoe UI", 11)
+        )
+        username_entry.pack(fill="x", pady=5)
 
-        ttk.Label(container, text="Username").pack(anchor="w")
-        username_entry = ttk.Entry(container, textvariable=self.username_var)
-        username_entry.pack(fill="x", pady=(4, 10))
+        tk.Label(container, text="Password", bg="white").pack(anchor="w")
 
-        ttk.Label(container, text="Password").pack(anchor="w")
-        password_entry = ttk.Entry(container, textvariable=self.password_var, show="*")
-        password_entry.pack(fill="x", pady=(4, 16))
+        password_entry = tk.Entry(
+            container,
+            textvariable=self.password_var,
+            show="*",
+            font=("Segoe UI", 11)
+        )
+        password_entry.pack(fill="x", pady=5)
 
-        ttk.Button(container, text="Login", command=self.attempt_login).pack(fill="x")
-        self.bind("<Return>", lambda _event: self.attempt_login())
-        username_entry.focus_set()
+        login_btn = tk.Button(
+            container,
+            text="LOGIN",
+            bg="#0f766e",
+            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            command=self.attempt_login
+        )
+        login_btn.pack(fill="x", pady=20)
+
+        self.bind("<Return>", lambda e: self.attempt_login())
 
     def attempt_login(self):
         if (
