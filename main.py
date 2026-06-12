@@ -61,7 +61,25 @@ class LoginApp(tk.Tk):
         self.topmost_job = None
         self.style = ttk.Style(self)
         self.style.theme_use("clam")
-        self.style.configure("TButton", padding=(10, 6))
+        self.style.configure(
+            "Accent.TButton",
+            background="#0f766e",
+            foreground="white",
+            padding=(10, 6),
+            font=("Segoe UI", 11, "bold"),
+            relief="flat",
+        )
+        self.style.map(
+            "Accent.TButton",
+            background=[("active", "#0d6e64"), ("pressed", "#0b6658")],
+        )
+        self.style.configure(
+            "TEntry",
+            fieldbackground="#f7fafc",
+            background="#f7fafc",
+            foreground="#202833",
+            padding=4,
+        )
 
         self.build_login()
         self.center_window()
@@ -80,30 +98,28 @@ class LoginApp(tk.Tk):
 
         tk.Label(container, text="Username", bg="white").pack(anchor="w")
 
-        username_entry = tk.Entry(
-        container,
-        textvariable=self.username_var,
-        font=("Segoe UI", 11)
+        username_entry = ttk.Entry(
+            container,
+            textvariable=self.username_var,
+            font=("Segoe UI", 11),
         )
         username_entry.pack(fill="x", pady=5)
 
         tk.Label(container, text="Password", bg="white").pack(anchor="w")
 
-        password_entry = tk.Entry(
+        password_entry = ttk.Entry(
             container,
             textvariable=self.password_var,
             show="*",
-            font=("Segoe UI", 11)
+            font=("Segoe UI", 11),
         )
         password_entry.pack(fill="x", pady=5)
 
-        login_btn = tk.Button(
+        login_btn = ttk.Button(
             container,
             text="LOGIN",
-            bg="#0f766e",
-            fg="white",
-            font=("Segoe UI", 11, "bold"),
-            command=self.attempt_login
+            style="Accent.TButton",
+            command=self.attempt_login,
         )
         login_btn.pack(fill="x", pady=20)
 
@@ -567,6 +583,9 @@ class EduTrackApp(tk.Tk):
             ("SDG 4: Quality Education", ("Segoe UI", 15)),
             ("Developer:", ("Segoe UI", 12, "bold")),
             ("Michael Tucker", ("Segoe UI", 16, "bold")),
+            ("Maria Williams", ("Segoe UI", 16, "bold")),
+            ("Andrew Bai Conteh", ("Segoe UI", 16, "bold")),
+
         )
         for text, font in lines:
             label = tk.Label(panel, text=text, font=font, anchor="w")
@@ -1514,8 +1533,55 @@ class EduTrackApp(tk.Tk):
             background=self.theme["button"],
             foreground=self.theme["text"],
             padding=(10, 6),
+            relief="flat",
         )
-        self.style.map("TButton", background=[("active", self.theme["accent"])])
+        self.style.map(
+            "TButton",
+            background=[("active", self.theme["accent"]), ("pressed", self.theme["accent"])],
+            foreground=[("active", "#ffffff")],
+        )
+        self.style.configure(
+            "Accent.TButton",
+            background=self.theme["accent"],
+            foreground="#ffffff",
+            padding=(10, 6),
+            relief="flat",
+        )
+        self.style.map(
+            "Accent.TButton",
+            background=[("active", "#0b6658"), ("pressed", "#0f766e")],
+        )
+        self.style.configure(
+            "TEntry",
+            fieldbackground=self.theme["panel"],
+            background=self.theme["panel"],
+            foreground=self.theme["text"],
+            insertbackground=self.theme["text"],
+        )
+        self.style.configure(
+            "TCombobox",
+            fieldbackground=self.theme["panel"],
+            background=self.theme["panel"],
+            foreground=self.theme["text"],
+        )
+        self.style.map(
+            "TCombobox",
+            fieldbackground=[("readonly", self.theme["panel"])],
+        )
+        self.style.configure(
+            "Vertical.TScrollbar",
+            troughcolor=self.theme["bg"],
+            background=self.theme["button"],
+            arrowcolor=self.theme["text"],
+            bordercolor=self.theme["border"],
+        )
+        self.style.configure(
+            "Horizontal.TScrollbar",
+            troughcolor=self.theme["bg"],
+            background=self.theme["button"],
+            arrowcolor=self.theme["text"],
+            bordercolor=self.theme["border"],
+        )
         self.style.configure(
             "TNotebook", background=self.theme["bg"], borderwidth=0, tabmargins=(0, 0, 0, 0)
         )
@@ -1544,7 +1610,11 @@ class EduTrackApp(tk.Tk):
             foreground=self.theme["text"],
             font=("Segoe UI", 10, "bold"),
         )
-        self.style.map("Treeview", background=[("selected", self.theme["accent"])])
+        self.style.map(
+            "Treeview",
+            background=[("selected", self.theme["accent"])],
+            foreground=[("selected", "#ffffff")],
+        )
 
         for card, title, value in self.dashboard_cards.values():
             card.configure(bg=self.theme["panel"], highlightbackground=self.theme["border"])
