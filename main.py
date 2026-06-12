@@ -68,46 +68,36 @@ class LoginApp(tk.Tk):
         self.front_job = self.after(100, self.bring_to_front)
 
     def build_login(self):
-        container = tk.Frame(self, bg="white")
-        container.pack(fill="both", expand=True, padx=20, pady=20)
+        container = tk.Frame(self, bg="#ffffff", padx=26, pady=24, highlightthickness=1)
+        container.configure(highlightbackground="#d5dde5")
+        container.pack(fill="both", expand=True, padx=18, pady=18)
 
         tk.Label(
-        container,
-        text="EDUTRACK SIERRA LEONE",
-        font=("Segoe UI", 18, "bold"),
-        bg="white"
-        ).pack(pady=(0, 20))
-
-        tk.Label(container, text="Username", bg="white").pack(anchor="w")
-
-        username_entry = tk.Entry(
-        container,
-        textvariable=self.username_var,
-        font=("Segoe UI", 11)
-        )
-        username_entry.pack(fill="x", pady=5)
-
-        tk.Label(container, text="Password", bg="white").pack(anchor="w")
-
-        password_entry = tk.Entry(
             container,
-            textvariable=self.password_var,
-            show="*",
-            font=("Segoe UI", 11)
-        )
-        password_entry.pack(fill="x", pady=5)
-
-        login_btn = tk.Button(
+            text="Login Authentication",
+            bg="#ffffff",
+            fg="#202833",
+            font=("Segoe UI", 17, "bold"),
+        ).pack(anchor="w")
+        tk.Label(
             container,
-            text="LOGIN",
-            bg="#0f766e",
-            fg="white",
-            font=("Segoe UI", 11, "bold"),
-            command=self.attempt_login
-        )
-        login_btn.pack(fill="x", pady=20)
+            text="Use admin credentials to access EduTrack.",
+            bg="#ffffff",
+            fg="#607080",
+            font=("Segoe UI", 10),
+        ).pack(anchor="w", pady=(4, 16))
 
-        self.bind("<Return>", lambda e: self.attempt_login())
+        ttk.Label(container, text="Username").pack(anchor="w")
+        username_entry = ttk.Entry(container, textvariable=self.username_var)
+        username_entry.pack(fill="x", pady=(4, 10))
+
+        ttk.Label(container, text="Password").pack(anchor="w")
+        password_entry = ttk.Entry(container, textvariable=self.password_var, show="*")
+        password_entry.pack(fill="x", pady=(4, 16))
+
+        ttk.Button(container, text="Login", command=self.attempt_login).pack(fill="x")
+        self.bind("<Return>", lambda _event: self.attempt_login())
+        username_entry.focus_set()
 
     def attempt_login(self):
         if (
@@ -530,17 +520,17 @@ class EduTrackApp(tk.Tk):
             self.analytics_tab, "Pass vs Fail Chart", 0, 1
         )
         self.attendance_canvas = self.add_chart_canvas(
-            self.analytics_tab, "Attendance Chart", 1, 0
-        )
-        self.department_canvas = self.add_chart_canvas(
-            self.analytics_tab, "Department Distribution Chart", 1, 1
+            self.analytics_tab, 
+            "Attendance Chart", 
+            1, 
+            0,
+            columnspan=2
         )
 
         for canvas in (
             self.grade_canvas,
             self.pass_canvas,
-            self.attendance_canvas,
-            self.department_canvas,
+            self.attendance_canvas
         ):
             canvas.bind("<Configure>", lambda _event: self.draw_all_charts())
 
@@ -560,14 +550,19 @@ class EduTrackApp(tk.Tk):
         self.about_panel = panel
 
         self.about_labels = []
-        lines = (
-            ("About EduTrack Sierra Leone", ("Segoe UI", 24, "bold")),
-            ("Developed for:", ("Segoe UI", 12, "bold")),
-            ("PROG103 Principles of Structured Programming", ("Segoe UI", 15)),
-            ("SDG 4: Quality Education", ("Segoe UI", 15)),
-            ("Developer:", ("Segoe UI", 12, "bold")),
-            ("Michael Tucker", ("Segoe UI", 16, "bold")),
-        )
+        lines =  (
+        ("About EduTrack Sierra Leone", ("Segoe UI", 24, "bold")),
+        ("Developed for:", ("Segoe UI", 12, "bold")),
+        ("PROG103 Principles of Structured Programming", ("Segoe UI", 15)),
+        ("SDG 4: Quality Education", ("Segoe UI", 15)),
+        ("Project Team", ("Segoe UI", 16, "bold")),
+        ("Michael Tucker", ("Segoe UI", 14, "bold")),
+        ("Lead Developer & System Architect", ("Segoe UI", 12)),
+        ("Maria Williams", ("Segoe UI", 14, "bold")),
+        ("Documentation & Authentiction js", ("Segoe UI", 12)),
+        ("Andrew Bai Conteh", ("Segoe UI", 14, "bold")),
+        ("System Analysis & Validation", ("Segoe UI", 12)),
+    )
         for text, font in lines:
             label = tk.Label(panel, text=text, font=font, anchor="w")
             label.pack(anchor="w", pady=(0, 14))
