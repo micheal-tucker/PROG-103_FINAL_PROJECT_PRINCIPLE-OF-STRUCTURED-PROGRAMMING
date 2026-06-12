@@ -1,0 +1,5 @@
+In GIT 
+   Local     =   Remote
+    analytics
+  maria-auth
+* master 
