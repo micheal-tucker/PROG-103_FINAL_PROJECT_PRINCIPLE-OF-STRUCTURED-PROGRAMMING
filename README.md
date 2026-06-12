@@ -1,1 +1,1 @@
-# EduTrack Sierra Leone\nProfessional Tkinter Student Management System
+# EduTrack Sierra Leone\nProfessional Tkinter
